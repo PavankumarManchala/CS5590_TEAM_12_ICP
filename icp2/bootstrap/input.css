@@ -1,0 +1,32 @@
+/* borders*/
+/** {
+    border-top: 10px;
+
+    border-down: 10px;
+}
+*/
+
+/* font-family*/
+h1 {
+    font-family: Arial;
+}
+h3 {
+    font-family : Mistral;
+}
+h2 {
+    font-family: Consolas;
+    text-align: left;
+}
+
+/*Font-size*/
+body {
+    font-size: 10px;
+}
+
+h1 {
+    text-align: end;
+}
+
+h3 {
+    text-align: end;
+}

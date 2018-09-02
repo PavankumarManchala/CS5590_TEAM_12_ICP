@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Rock Paper Scissor</title>
+
+    <script>
+
+     function rps() {
+         var computerval = Math.random();
+         var computerval2;
+         console.log(computerval);
+         if (computerval <= 0.3) {
+             computerval2 = "rock";
+         }
+         else if (computerval>0.3 && computerval<0.6) {
+             computerval2 = "paper";
+         }
+         else {
+             computerval2 = "scissors";
+         }
+
+         var uservalue = document.getElementById("uservalue").value;
+
+         if (computerval2 == "rock" && uservalue == "rock")
+             document.getElementById("abc").innerHTML = "Tie";
+         else if (computerval2 == "rock" && uservalue == "scissors")
+                 document.getElementById("abc").innerHTML = "Lost";
+         else if (computerval2 == "rock" && uservalue == "paper")
+             document.getElementById("abc").innerHTML = "Won";
+         else if (computerval2 == "paper" && uservalue == "rock")
+             document.getElementById("abc").innerHTML = "Lost";
+         else if (computerval2 == "paper" && uservalue == "scissors")
+             document.getElementById("abc").innerHTML = "Lost";
+         else if (computerval2 == "paper" && uservalue == "paper")
+             document.getElementById("abc").innerHTML = "Tie";
+         else if (computerval2 == "scissors" && uservalue == "rock")
+             document.getElementById("abc").innerHTML = "Won";
+         else if (computerval2 == "scissors" && uservalue == "scissors")
+             document.getElementById("abc").innerHTML = "Tie";
+         else if (computerval2 == "scissors" && uservalue == "paper")
+             document.getElementById("abc").innerHTML = "Lost";
+
+
+     }
+
+     </script>
+</head>
+<body>
+<h1 style="color: blueviolet"> Rock paper scissor! </h1>
+<h2 style="color: blue">Enter value</h2>
+<input type="text" id="uservalue">
+<button onclick="rps()">Play!</button>
+<p id="abc"></p>
+</body>
+</html>
