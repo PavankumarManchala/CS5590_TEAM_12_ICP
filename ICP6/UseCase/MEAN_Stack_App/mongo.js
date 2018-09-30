@@ -2,6 +2,7 @@
  * Created by karthik on 7/14/17.
  */
 var MongoClient = require('mongodb').MongoClient;
+var mongo=require('mongodb');
 var assert = require('assert');
 var bodyParser = require("body-parser");
 var express = require('express');
@@ -104,20 +105,34 @@ app.get('/update/:toBeUpdated_id', function (req, res){
     });
 });
 */
-app.get('/update/:toBeUpdated_id', function (req, res) {
-    //3.connect to MongoDB. Handle the error and write the logic for updating the selected field
+app.get('/update/:_id', function (req, res) {
     MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var myquery = { _id: ObjectID(req.params.toBeUpdated_id)};
-        var newvalues = {$set: {bookName:req.query.bookName,authorName:req.query.authorName,ISBN:req.query.ISBN } };
-        db.collection("books").updateOne(myquery, newvalues,function(err, res) {
-            if (err) throw err;
-            console.log(res.result.nModified + " record(s) updated");
-            db.close();
+        if(err)
+        {
+            res.write("Failed, Error while connecting to Database");
+            res.end();
+        }
+        var idToBeUpdated = req.params._id;
+        var book = req.query;
+        console.log("Book Name"+idToBeUpdated);
+        var bookData = { $set: { bookName : book.bookName, authorName: book.authorName, ISBN : book.ISBN }};
+        updateDocument(db, idToBeUpdated, bookData, res, function () {
+            res.write("Successfully updated");
+            res.end();
         });
     });
 });
-
+var updateDocument = function (db, id, book, res, callback) {
+    console.log("Id "+id);
+    db.collection('books').updateOne( {_id : new mongo.ObjectId(id)}, book, function(err, result) {
+        if (err) {
+            res.write("Update Failed, Error While Updating");
+            res.end();
+        }
+        console.log("Updated a document in the books collection.");
+        callback();
+    });
+};
     var insertDocument = function(db, data, callback) {
     db.collection('books').insertOne( data, function(err, result) {
         if(err)
