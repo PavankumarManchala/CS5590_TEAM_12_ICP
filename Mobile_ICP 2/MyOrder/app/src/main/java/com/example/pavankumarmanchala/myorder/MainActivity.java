@@ -16,6 +16,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pavankumarmanchala.myorder.Summary;
+import com.pavankumarmanchala.myorder.R;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String MAIN_ACTIVITY_TAG = "MainActivity";
     final int COFFEE_PRICE = 5;
